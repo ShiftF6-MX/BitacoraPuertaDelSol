@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.SMB.view.Busqueda">
+   <children>
+      <Button fx:id="buscarButton" layoutX="683.0" layoutY="31.0" mnemonicParsing="false" onAction="#buscarVenta" prefHeight="25.0" prefWidth="99.0" text="BUSCAR" />
+      <TableView fx:id="tablaVenta" layoutX="14.0" layoutY="62.0" prefHeight="480.0" prefWidth="1102.0">
+        <columns>
+            <TableColumn fx:id="codigoVentaColumn" prefWidth="77.0" text="Código" />
+            <TableColumn fx:id="clienteColumn" prefWidth="286.0" text="Cliente" />
+            <TableColumn fx:id="referenciaVentaColumn" prefWidth="156.0" text="Referencia" />
+            <TableColumn fx:id="fechaVentaColumn" prefWidth="150.0" text="Fecha" />
+            <TableColumn fx:id="statusFacturacionColumn" minWidth="0.0" prefWidth="141.0" text="Status Facturación" />
+            <TableColumn fx:id="statusFinancieroColumn" prefWidth="122.0" text="Status Financiero" />
+          <TableColumn fx:id="statusAdministrativoColumn" prefWidth="195.0" text="Status Administrativo" />
+        </columns>
+      </TableView>
+      <TextField fx:id="buscarField" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="253.0" />
+      <TableView fx:id="tablaDetalleVenta" layoutX="14.0" layoutY="542.0" prefHeight="200.0" prefWidth="1341.0">
+        <columns>
+          <TableColumn fx:id="codigoColumn" prefWidth="126.0" text="Codigo" />
+          <TableColumn fx:id="servicioProductoColumn" prefWidth="533.0" text="Servicio/Producto" />
+            <TableColumn fx:id="cantidadColumn" prefWidth="131.0" text="Cantidad" />
+            <TableColumn fx:id="precioColumn" prefWidth="189.0" text="Precio" />
+            <TableColumn fx:id="impuestoColumn" prefWidth="156.0" text="Impuesto" />
+            <TableColumn fx:id="importeColumn" prefWidth="205.0" text="Importe" />
+        </columns>
+      </TableView>
+      <DatePicker fx:id="fechaInicial" layoutX="287.0" layoutY="31.0" />
+      <DatePicker fx:id="fechaFinal" layoutX="477.0" layoutY="31.0" />
+      <Label layoutX="14.0" layoutY="6.0" text="Buscar venta:" />
+      <Label layoutX="287.0" layoutY="6.0" text="Fecha inicial:" />
+      <Label layoutX="477.0" layoutY="6.0" text="Fecha final" />
+      <Text layoutX="1131.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente" wrappingWidth="67.0">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+      <Label fx:id="clienteField" layoutX="1131.0" layoutY="95.0" prefHeight="25.0" prefWidth="220.0" />
+      <ComboBox fx:id="clientesCombo" layoutX="1131.0" layoutY="148.0" prefHeight="25.0" prefWidth="220.0" />
+      <Button layoutX="1291.0" layoutY="202.0" mnemonicParsing="false" onAction="#cambiarCliente" text="Cambiar" />
+   </children>
+</AnchorPane>
