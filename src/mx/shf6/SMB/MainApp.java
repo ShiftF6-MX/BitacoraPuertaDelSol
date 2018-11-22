@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import mx.shf6.SMB.model.Venta;
 import mx.shf6.SMB.utilities.ConnectionDB;
+import mx.shf6.SMB.utilities.LeerArchivo;
 import mx.shf6.SMB.view.Busqueda;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -21,8 +22,8 @@ public class MainApp extends Application {
 	//Pantallas
 	private Stage primaryStage;
     private BorderPane rootLayout;  
-    private Connection connection;
-    private ConnectionDB connectionDB;
+    public static ConnectionDB connectionDB;
+	public static Connection mysqlConnection;
     
     
       
@@ -43,8 +44,9 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
     	//INICIO DE LA CONEXION DE LA BASE DE DATOS
-        this.connectionDB = new ConnectionDB("shiftf6db", "192.168.0.216", "conn01" , "Simons83Mx");
-    	this.connection = connectionDB.conectarMySQL();
+    	LeerArchivo.leerArchivo();
+    	connectionDB = new ConnectionDB(LeerArchivo.nameDB, LeerArchivo.hostDB, LeerArchivo.userDB, LeerArchivo.passwordDB);
+		mysqlConnection = connectionDB.conectarMySQL();
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Maxicomercio Tools | Bitácora de Servicios by Shift F6");
         initRootLayout();
@@ -93,7 +95,7 @@ public class MainApp extends Application {
     
   //METODOS DE ACCESO A VARIABLE "CONNECTION"
   	public Connection getConnection() {
-  		return this.connection;
+  		return MainApp.mysqlConnection;
   	}//FIN METODO
     
     //REGRESA LOS DATOS EN UNA LISTA OBSERVABLE DE USUARIOS
