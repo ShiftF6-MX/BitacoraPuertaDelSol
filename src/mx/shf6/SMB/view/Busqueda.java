@@ -150,7 +150,7 @@ public class Busqueda {
     	});
     	
     	this.precioField.textProperty().addListener((observable, oldValue, newValue) -> {
-    	    this.nuevoPrecio.setText(newValue);
+    	    this.nuevoPrecio.setText("$" + newValue);
     	    if (nuevaCantidad.getText() == "")
     	    	this.precioNeto.setText("Nuevo precio neto: $ 0.00");
     	    if (nuevoPrecio.getText() == "")
@@ -298,6 +298,7 @@ public class Busqueda {
     	fechaFinal.setValue(LocalDate.now());
     	clienteField.setText("");
     	clientesCombo.setValue("");
+    	buscarVenta();
     }//FIN METODO   
     
     private void showDetalleProducto(DetalleVenta detalleVenta) {
@@ -306,7 +307,7 @@ public class Busqueda {
     		precioLabel.setText("$" + detalleVenta.getPrecio());
     		cantidadField.setText(detalleVenta.getCantidad() + "");
     		precioField.setText("" + detalleVenta.getPrecio());
-    		precioNeto.setText("Precio Neto: $" + (detalleVenta.getCantidad() * detalleVenta.getPrecio()));
+    		precioNeto.setText("Precio neto: $" + (detalleVenta.getCantidad() * detalleVenta.getPrecio()));
     		productoLabel.setText(detalleVenta.getProducto().getDescripcion());
     		this.modifcarPrecioButton.setDisable(true);
     		if (validarDetalleVenta(detalleVenta.getProducto().getCodigo())) {
@@ -315,8 +316,6 @@ public class Busqueda {
     			this.cantidadField.setDisable(false);
     			this.precioField.setDisable(false);
     			this.modifcarPrecioButton.setDisable(false);
-    			this.modificarClienteButton.setDisable(false);		
-    			this.clientesCombo.setDisable(false);
     			this.productoField.setDisable(false);
     			
     		} else {
@@ -326,8 +325,6 @@ public class Busqueda {
     			this.precioField.setDisable(true);
     			this.modifcarPrecioButton.setDisable(true);
     			this.modifcarPrecioButton.setDisable(true);
-    			this.modificarClienteButton.setDisable(true);		
-    			this.clientesCombo.setDisable(true);
     			this.productoField.setDisable(true);
     		}
     	} else {
@@ -360,6 +357,8 @@ public class Busqueda {
         	cantidadField.setDisable(true);
 			precioField.setDisable(true);
 			modifcarPrecioButton.setDisable(true);
+			clientesCombo.setDisable(false);
+			modificarClienteButton.setDisable(false);
         } else
         	tablaDetalleVenta.getItems().clear();
     }//FIN METODO	
@@ -371,6 +370,7 @@ public class Busqueda {
     		if (this.nuevoProductoField.getText() != "") {
     			detalleVentaDAO.modificarProducto(mainApp.getConnection(), detalleVenta.getSysPK(), Double.parseDouble(cantidadField.getText()), Double.parseDouble(precioField.getText()), nuevoProducto.getSysPk());
     			Notificacion.dialogoAlerta(AlertType.INFORMATION, "Mensaje Maxicomercio", "El registro se ha modificado correctamente");
+    			buscarVenta();
     		}    			
     		else
     			Notificacion.dialogoAlerta(AlertType.ERROR, "Mensaje Maxicomercio", "No se ha especificado el producto");

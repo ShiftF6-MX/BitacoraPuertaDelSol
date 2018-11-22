@@ -1,5 +1,7 @@
 package mx.shf6.SMB.model;
 
+import java.text.DecimalFormat;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -13,6 +15,7 @@ public class DetalleVenta {
 	private ObjectProperty<Double> impuesto;			//Impuesto3
 	private ObjectProperty<Double> importe;				//Cantidad * Precio
 	private ObjectProperty<Venta> venta;				//FK_Venta_Detalle (INT) | ForeingKey (Venta.Sys_PK)
+	private DecimalFormat decimalFormat = new DecimalFormat("#.00");
 	
 	//CONSTRUCTOR SIN PARAMETROS
 	public DetalleVenta() {
@@ -53,18 +56,20 @@ public class DetalleVenta {
 		this.producto.set(producto);
 	}//FIN METODO
 		
-	public ObjectProperty<Producto> productoProperty() {
+	public ObjectProperty<Producto> productoProperty() {		
 		return this.producto;
 	}//FIN METODO
 	//FIN METODOS "PRODUCTO"
 	
 	//METODOS PARA ACCESO A "CANTIDAD"
 	public Double getCantidad() {
-		return cantidad.get();
+		double valorFinal = Double.parseDouble(decimalFormat.format(cantidad.get()));
+		return valorFinal;
 	}//FIN METODO
 
 	public void setCantidad(Double cantidad) {
-		this.cantidad.set(cantidad);
+		double valorFinal = Double.parseDouble(decimalFormat.format(cantidad));
+		this.cantidad.set(valorFinal);
 	}//FIN METODO
 	
 	public ObjectProperty<Double> cantidadProperty() {
@@ -74,11 +79,13 @@ public class DetalleVenta {
 	
 	//METODOS PARA ACCESO A "PRECIO"
 	public Double getPrecio() {
-		return precio.get();
+		double valorFinal = Double.parseDouble(decimalFormat.format(precio.get()));
+		return valorFinal;
 	}//FIN METODO
 
 	public void setPrecio(Double precio) {
-		this.precio.set(precio);
+		double valorFinal = Double.parseDouble(decimalFormat.format(precio));
+		this.precio.set(valorFinal);
 	}//FIN METODO
 	
 	public ObjectProperty<Double> precioProperty() {
@@ -88,11 +95,13 @@ public class DetalleVenta {
 	
 	//METODOS PARA ACCESO A "IMPUESTO"
 	public Double getImpuesto() {
-		return impuesto.get();
+		double valorFinal = Double.parseDouble(decimalFormat.format(impuesto.get()));
+		return valorFinal;
 	}//FIN METODO
 
 	public void setImpuesto(Double impuesto) {
-		this.impuesto.set(impuesto);
+		double valorFinal = Double.parseDouble(decimalFormat.format(impuesto));
+		this.impuesto.set(valorFinal);
 	}//FIN METODO
 		
 	public ObjectProperty<Double> impuestoProperty() {
@@ -102,11 +111,15 @@ public class DetalleVenta {
 	
 	//METODOS PARA ACCESO A "IMPORTE"
 	public Double getImporte() {
-		return importe.get();
+		DecimalFormat decimalFormat = new DecimalFormat("#.00");
+		double valorFinal = Double.parseDouble(decimalFormat.format(importe.get()));
+		return valorFinal;
 	}//FIN METODO
 
 	public void setImporte(Double importe) {
-		this.importe.set(importe);
+		DecimalFormat decimalFormat = new DecimalFormat("#.00");
+		double valorFinal = Double.parseDouble(decimalFormat.format(importe));
+		this.importe.set(valorFinal);
 	}//FIN METODO
 			
 	public ObjectProperty<Double> importeProperty() {
