@@ -48,7 +48,7 @@ public class MainApp extends Application {
     	connectionDB = new ConnectionDB(LeerArchivo.nameDB, LeerArchivo.hostDB, LeerArchivo.userDB, LeerArchivo.passwordDB);
 		mysqlConnection = connectionDB.conectarMySQL();
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Maxicomercio Tools | Bitácora de Servicios by Shift F6");
+        this.primaryStage.setTitle("Maxicomercio Tools | Factura by Shift F6");
         initRootLayout();
         showBusqueda();
     }//FIN METODO
