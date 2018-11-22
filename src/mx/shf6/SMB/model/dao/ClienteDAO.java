@@ -15,7 +15,7 @@ public class ClienteDAO implements ObjectDAO {
 	public boolean crear(Connection connection, Object objeto) {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}//FIN METODO
 
 	//METODO PARA HACER SELECT EN LA TABLA REPARTIDOR
 	@Override
@@ -33,11 +33,11 @@ public class ClienteDAO implements ObjectDAO {
 					cliente.setSysPk(resultSet.getInt(1));
 					cliente.setNombre(resultSet.getString(2));
 					listaCliente.add(cliente);
-				}
+				}//FIN WHILE
 			}catch (SQLException e) {
 				System.out.println("Error: En método leer");
 				e.printStackTrace();
-			}
+			}//FIN TRY-CATCH
 		}else {
 			query="SELECT Sys_PK, nombre FROM cliente WHERE "+campoBusqueda+" = ? ORDER BY nombre;";	
 			try {
@@ -49,12 +49,12 @@ public class ClienteDAO implements ObjectDAO {
 					cliente.setSysPk(resultSet.getInt(1));
 					cliente.setNombre(resultSet.getString(2));
 					listaCliente.add(cliente);
-				}
+				}//FIN WHILE
 			}catch (SQLException e) {
 				System.out.println("Error: En método leer");
 				e.printStackTrace();
-			}	
-		}
+			}//FIN TRY-CATCH
+		}//FIN IF-ELSE
 		return listaCliente;
 	}//FIN METODO
 
@@ -62,13 +62,11 @@ public class ClienteDAO implements ObjectDAO {
 	public boolean modificar(Connection connection, Object objeto) {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}//FIN METODO
 
 	@Override
 	public boolean eliminar(Connection connection, Object objeto) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-	
-	
+	}//FIN METODO	
 }//FIN CLASE

@@ -1,6 +1,8 @@
 package mx.shf6.SMB;
 	
 import java.io.IOException;
+import java.sql.Connection;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,11 +21,12 @@ public class MainApp extends Application {
 	//Pantallas
 	private Stage primaryStage;
     private BorderPane rootLayout;  
+    private Connection connection;
+    private ConnectionDB connectionDB;
     
-    //INICIO DE LA CONEXION DE LA BASE DE DATOS
-    static ConnectionDB connectionDB =  new ConnectionDB("shiftf6db", "192.168.0.216", "conn01" , "Simons83Mx");
     
-   //LISTA OOBSERVABLE PARA ALMACENAR A LOS USUARIOS
+      
+	//LISTA OOBSERVABLE PARA ALMACENAR A LOS USUARIOS
     private ObservableList<Venta> ventaData = FXCollections.observableArrayList();
 
     //CONSTRUCTOR
@@ -35,16 +38,18 @@ public class MainApp extends Application {
     	//	ventaData.add((Venta) venta);
     	//}
     }//FIN CONSTRUCTOR
-
     
     //INICIACION DE ESCENARIO
     @Override
     public void start(Stage primaryStage) {
+    	//INICIO DE LA CONEXION DE LA BASE DE DATOS
+        this.connectionDB = new ConnectionDB("shiftf6db", "192.168.0.216", "conn01" , "Simons83Mx");
+    	this.connection = connectionDB.conectarMySQL();
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Maxicomercio Tools | Bitácora de Servicios by Shift F6");
         initRootLayout();
         showBusqueda();
-    }
+    }//FIN METODO
     
     //INICIACION DE ROOTLAYOUT
     public void initRootLayout() {
@@ -59,7 +64,7 @@ public class MainApp extends Application {
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }//FIN TRY-CATCH
     }//FIN METODO
     
     //MUESTRA LA INTERFAZ DE GESTOR DE USUARIO
@@ -86,12 +91,16 @@ public class MainApp extends Application {
     	return primaryStage;
     }//FIN METODO
     
+  //METODOS DE ACCESO A VARIABLE "CONNECTION"
+  	public Connection getConnection() {
+  		return this.connection;
+  	}//FIN METODO
     
     //REGRESA LOS DATOS EN UNA LISTA OBSERVABLE DE USUARIOS
     public ObservableList<Venta> getVentaData() {
     	return ventaData;
     }//FIN METODO
-
+    
     public static void main(String[] args) {
         launch(args);
     }//FIN METODO	

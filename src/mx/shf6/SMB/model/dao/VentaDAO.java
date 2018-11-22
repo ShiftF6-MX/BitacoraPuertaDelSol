@@ -16,7 +16,7 @@ public class VentaDAO implements ObjectDAO {
 	public boolean crear(Connection connection, Object objeto) {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}//FIN METODO
 	
 	//METODO PARA HACER SELECT EN LA TABLA VENTAS
 	public ArrayList<Object> leer(Connection connection, String campoBusqueda, String valorBusqueda, String fechaInicial, String fechaFinal) {
@@ -88,7 +88,7 @@ public class VentaDAO implements ObjectDAO {
 						venta.setStatusAdministrativo(resultSet.getInt(7));
 						venta.setNotas(resultSet.getString(8));
 						listaVenta.add(venta);
-					}
+					}//FIN WHILE
 				}catch (SQLException e) {
 					System.out.println("Error: En método leer");
 					e.printStackTrace();
@@ -157,7 +157,7 @@ public class VentaDAO implements ObjectDAO {
 	public boolean eliminar(Connection connection, Object objeto) {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}//FIN METODO
 	
 	//METODO PARA HACER SELECT EN LA TABLA VENTAS SIN LOS PARAMETROS DE FECHA INICIAL, FECHA FINAL Y OPCION
 	@Override
@@ -191,7 +191,7 @@ public class VentaDAO implements ObjectDAO {
 				 venta.setStatusAdministrativo(resultSet.getInt(7));
 				 venta.setNotas(resultSet.getString(8));
 				 listaVenta.add(venta);
-			}
+			}//FIN WHILE
 		}catch (SQLException e) {
 			System.out.println("Error: En método leer");
 			e.printStackTrace();	
@@ -203,6 +203,6 @@ public class VentaDAO implements ObjectDAO {
 	public boolean modificar(Connection connection, Object objeto) {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}//FIN METODO
 
 }//FIN CLASE
