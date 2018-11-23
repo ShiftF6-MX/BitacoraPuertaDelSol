@@ -1,6 +1,7 @@
 package mx.shf6.SMB.view;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -47,6 +48,7 @@ public class Busqueda {
 	private ObservableList<DetalleVenta> detalleVentaData;
 	private ObservableList<Venta> ventaData;
 	private ArrayList<String> productosNoFacturables;
+	private DecimalFormat decimalFormat;
 	    
     //COMPONENTES INTERFAZ DE USUARIO
 	@FXML private TableView<Venta> tablaVenta;
@@ -109,8 +111,9 @@ public class Busqueda {
 		this.modificarClienteButton.setDisable(true);		
 		this.clientesCombo.setDisable(true);
 		this.productoField.setDisable(true);
+		this.decimalFormat = new DecimalFormat("#.00");
     	productosNoFacturables = new ArrayList<String>();    	
-    	productosNoFacturables.add("3820"); 	//Arena    	
+    	productosNoFacturables.add("3820"); //Arena    	
     	productosNoFacturables.add("3821");	//Grava
     	productosNoFacturables.add("1080");	//Block
     	productosNoFacturables.add("4551");	//Block del 14
@@ -143,21 +146,21 @@ public class Busqueda {
     	    	this.precioNeto.setText("Nuevo precio neto: $ 0.00");
     	    if (nuevaCantidad.getText() != "" && nuevoPrecio.getText() != "")
     	    	try {
-    	    		this.nuevoPrecioNeto.setText("Nuevo precio neto: $ " + (Double.parseDouble(this.cantidadField.getText()) * Double.parseDouble(this.precioField.getText())));
+    	    		this.nuevoPrecioNeto.setText("Nuevo precio neto: $ " + decimalFormat.format((Double.parseDouble(this.cantidadField.getText()) * Double.parseDouble(this.precioField.getText()))));
 				} catch (Exception e) {
 					// TODO: handle exception
 				}//FIN TRY-CATCH    	    	
     	});
     	
     	this.precioField.textProperty().addListener((observable, oldValue, newValue) -> {
-    	    this.nuevoPrecio.setText("$" + newValue);
+    	    this.nuevoPrecio.setText(newValue);
     	    if (nuevaCantidad.getText() == "")
     	    	this.precioNeto.setText("Nuevo precio neto: $ 0.00");
     	    if (nuevoPrecio.getText() == "")
     	    	this.precioNeto.setText("Nuevo precio neto: $ 0.00");
     	    if (nuevaCantidad.getText() != "" && nuevoPrecio.getText() != "")
     	    	try {
-    	    		this.nuevoPrecioNeto.setText("Nuevo precio neto: $ " + (Float.parseFloat(this.cantidadField.getText()) * Float.parseFloat(this.precioField.getText())));
+    	    		this.nuevoPrecioNeto.setText("Nuevo precio neto: $ " + decimalFormat.format((Double.parseDouble(this.cantidadField.getText()) * Double.parseDouble(this.precioField.getText()))));
 				} catch (Exception e) {
 					// TODO: handle exception
 				}//FIN TRY-CATCH	    	
@@ -307,7 +310,7 @@ public class Busqueda {
     		precioLabel.setText("$" + detalleVenta.getPrecio());
     		cantidadField.setText(detalleVenta.getCantidad() + "");
     		precioField.setText("" + detalleVenta.getPrecio());
-    		precioNeto.setText("Precio neto: $" + (detalleVenta.getCantidad() * detalleVenta.getPrecio()));
+    		precioNeto.setText("Precio neto: $" + this.decimalFormat.format((detalleVenta.getCantidad() * detalleVenta.getPrecio())));
     		productoLabel.setText(detalleVenta.getProducto().getDescripcion());
     		this.modifcarPrecioButton.setDisable(true);
     		if (validarDetalleVenta(detalleVenta.getProducto().getCodigo())) {
