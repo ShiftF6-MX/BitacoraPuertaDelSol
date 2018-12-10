@@ -29,6 +29,7 @@ import mx.shf6.SMB.model.dao.ClienteDAO;
 import mx.shf6.SMB.model.dao.DetalleVentaDAO;
 import mx.shf6.SMB.model.dao.ProductoDAO;
 import mx.shf6.SMB.model.dao.VentaDAO;
+import mx.shf6.SMB.utilities.LeerArchivo;
 import mx.shf6.SMB.utilities.Notificacion;
 
 public class Busqueda {
@@ -112,15 +113,7 @@ public class Busqueda {
 		this.clientesCombo.setDisable(true);
 		this.productoField.setDisable(true);
 		this.decimalFormat = new DecimalFormat("#.00");
-    	productosNoFacturables = new ArrayList<String>();    	
-    	productosNoFacturables.add("3820"); //Arena    	
-    	productosNoFacturables.add("3821");	//Grava
-    	productosNoFacturables.add("1080");	//Block
-    	productosNoFacturables.add("4551");	//Block del 14
-    	productosNoFacturables.add("4081");	//Tabique aparente
-    	productosNoFacturables.add("3822");	//Piedra
-    	productosNoFacturables.add("3960");	//Tepetate
-    	productosNoFacturables.add("BR-002");
+    	productosNoFacturables = LeerArchivo.leerCodigoProductos();
     	
     	this.cantidadField.textProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
